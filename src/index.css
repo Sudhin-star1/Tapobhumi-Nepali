@@ -1,0 +1,187 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Himalayan palette */
+    --background: 40 40% 98%;
+    --foreground: 215 35% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 215 35% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 35% 15%;
+
+    /* Deep saffron */
+    --primary: 24 88% 52%;
+    --primary-foreground: 40 40% 98%;
+    --primary-glow: 32 95% 62%;
+
+    /* Sky blue */
+    --secondary: 205 75% 55%;
+    --secondary-foreground: 40 40% 98%;
+
+    /* Earthy green */
+    --accent: 130 28% 38%;
+    --accent-foreground: 40 40% 98%;
+
+    /* Snow white surfaces */
+    --muted: 40 30% 95%;
+    --muted-foreground: 215 15% 40%;
+
+    --destructive: 0 75% 55%;
+    --destructive-foreground: 40 40% 98%;
+
+    --border: 35 25% 88%;
+    --input: 35 25% 88%;
+    --ring: 24 88% 52%;
+
+    --radius: 0.75rem;
+
+    /* Custom tokens */
+    --saffron: 24 88% 52%;
+    --saffron-deep: 18 82% 42%;
+    --sky: 205 75% 55%;
+    --sky-soft: 200 65% 80%;
+    --snow: 40 40% 98%;
+    --himalaya: 215 45% 22%;
+    --gold: 38 75% 52%;
+    --earth: 130 28% 38%;
+    --earth-soft: 100 20% 75%;
+
+    /* Gradients */
+    --gradient-sunrise: linear-gradient(135deg, hsl(24 88% 52%) 0%, hsl(38 95% 62%) 50%, hsl(205 75% 65%) 100%);
+    --gradient-sky: linear-gradient(180deg, hsl(205 75% 75%) 0%, hsl(200 60% 92%) 100%);
+    --gradient-divine: linear-gradient(135deg, hsl(24 88% 52% / 0.95), hsl(18 82% 42% / 0.95));
+    --gradient-overlay: linear-gradient(180deg, hsl(215 45% 12% / 0.1) 0%, hsl(215 45% 12% / 0.7) 100%);
+    --gradient-mist: linear-gradient(180deg, transparent 0%, hsl(40 40% 98% / 0.95) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(40 40% 97%) 100%);
+
+    /* Shadows */
+    --shadow-soft: 0 4px 24px -4px hsl(215 45% 22% / 0.08);
+    --shadow-elegant: 0 20px 60px -20px hsl(215 45% 22% / 0.25);
+    --shadow-glow: 0 0 60px hsl(24 88% 52% / 0.35);
+    --shadow-deep: 0 30px 80px -30px hsl(18 82% 42% / 0.35);
+
+    /* Transitions */
+    --ease-divine: cubic-bezier(0.22, 1, 0.36, 1);
+    --transition-smooth: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: "ss01", "cv11";
+  }
+  h1, h2, h3, h4, h5 {
+    @apply font-serif tracking-tight;
+  }
+}
+
+@layer utilities {
+  .font-serif {
+    font-family: 'Cormorant Garamond', serif;
+  }
+  .font-sans {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  .gradient-sunrise {
+    background: var(--gradient-sunrise);
+  }
+  .gradient-divine {
+    background: var(--gradient-divine);
+  }
+  .gradient-text {
+    background: var(--gradient-sunrise);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .shadow-elegant { box-shadow: var(--shadow-elegant); }
+  .shadow-soft { box-shadow: var(--shadow-soft); }
+  .shadow-glow { box-shadow: var(--shadow-glow); }
+  .shadow-deep { box-shadow: var(--shadow-deep); }
+
+  /* Mandala spinner */
+  @keyframes spin-slow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  .animate-spin-slow {
+    animation: spin-slow 80s linear infinite;
+  }
+
+  /* Floating clouds */
+  @keyframes float-cloud {
+    0%, 100% { transform: translateX(0) translateY(0); }
+    50% { transform: translateX(30px) translateY(-10px); }
+  }
+  .animate-float { animation: float-cloud 12s ease-in-out infinite; }
+  .animate-float-delayed { animation: float-cloud 16s ease-in-out infinite 2s; }
+
+  /* Fade in up */
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-fade-up { animation: fade-up 0.9s var(--ease-divine) both; }
+
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  .animate-fade-in { animation: fade-in 1.2s ease-out both; }
+
+  /* Hero zoom */
+  @keyframes ken-burns {
+    0%, 100% { transform: scale(1.05) translate(0, 0); }
+    50% { transform: scale(1.12) translate(-1%, -1%); }
+  }
+  .animate-ken-burns { animation: ken-burns 24s ease-in-out infinite; }
+
+  /* Pulse glow for whatsapp */
+  @keyframes pulse-ring {
+    0% { box-shadow: 0 0 0 0 hsl(130 60% 45% / 0.5); }
+    100% { box-shadow: 0 0 0 24px hsl(130 60% 45% / 0); }
+  }
+  .animate-pulse-ring { animation: pulse-ring 2s ease-out infinite; }
+
+  /* Scroll reveal helper */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1s var(--ease-divine), transform 1s var(--ease-divine);
+  }
+  .reveal.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Decorative divider */
+  .om-divider::before,
+  .om-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, hsl(var(--gold) / 0.6), transparent);
+  }
+  .om-divider {
+    @apply flex items-center gap-4 text-primary;
+  }
+}
