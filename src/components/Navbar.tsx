@@ -42,15 +42,25 @@ export const Navbar = () => {
       )}
     >
       <div className="container flex items-center justify-between h-20">
-        <a href="#top" className="flex items-center gap-3 group">
+        <a href="#top" className="flex items-center gap-3 group min-w-0">
           <div className="relative w-10 h-10 rounded-full gradient-sunrise flex items-center justify-center shadow-glow">
             <span className="font-serif text-xl text-primary-foreground">ॐ</span>
           </div>
-          <div className="leading-tight">
-            <div className={cn("font-serif text-xl tracking-wide", scrolled ? "text-himalaya" : "text-snow drop-shadow")}>
+          <div className="leading-tight min-w-0">
+            <div
+              className={cn(
+                "font-serif tracking-wide text-base sm:text-xl truncate",
+                scrolled ? "text-himalaya" : "text-snow drop-shadow"
+              )}
+            >
               Tapobhumi Nepali Darshan
             </div>
-            <div className={cn("text-[10px] uppercase tracking-[0.25em]", scrolled ? "text-muted-foreground" : "text-snow/80")}>
+            <div
+              className={cn(
+                "hidden sm:block text-[10px] uppercase tracking-[0.25em]",
+                scrolled ? "text-muted-foreground" : "text-snow/80"
+              )}
+            >
               Treks · Tours · Nepal
             </div>
           </div>

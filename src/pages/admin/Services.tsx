@@ -113,41 +113,43 @@ export default function AdminServices() {
           ) : rows.length === 0 ? (
             <div className="text-sm text-muted-foreground">No services yet.</div>
           ) : (
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Title</TableHead>
-                  <TableHead>Description</TableHead>
-                  <TableHead className="text-right">Actions</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {rows.map((s) => (
-                  <TableRow key={s._id}>
-                    <TableCell className="font-medium">{s.title}</TableCell>
-                    <TableCell className="text-muted-foreground">{s.description}</TableCell>
-                    <TableCell className="text-right space-x-2">
-                      <Button
-                        variant="secondary"
-                        size="sm"
-                        onClick={() => {
-                          setEditing(s);
-                          setTitle(s.title);
-                          setDescription(s.description);
-                          setIcon(s.icon || "");
-                          setOpen(true);
-                        }}
-                      >
-                        Edit
-                      </Button>
-                      <Button variant="destructive" size="sm" onClick={() => del.mutate(s._id)} disabled={del.isPending}>
-                        Delete
-                      </Button>
-                    </TableCell>
+            <div className="w-full overflow-x-auto">
+              <Table className="min-w-[820px]">
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Title</TableHead>
+                    <TableHead>Description</TableHead>
+                    <TableHead className="text-right">Actions</TableHead>
                   </TableRow>
-                ))}
-              </TableBody>
-            </Table>
+                </TableHeader>
+                <TableBody>
+                  {rows.map((s) => (
+                    <TableRow key={s._id}>
+                      <TableCell className="font-medium">{s.title}</TableCell>
+                      <TableCell className="text-muted-foreground">{s.description}</TableCell>
+                      <TableCell className="text-right space-x-2">
+                        <Button
+                          variant="secondary"
+                          size="sm"
+                          onClick={() => {
+                            setEditing(s);
+                            setTitle(s.title);
+                            setDescription(s.description);
+                            setIcon(s.icon || "");
+                            setOpen(true);
+                          }}
+                        >
+                          Edit
+                        </Button>
+                        <Button variant="destructive" size="sm" onClick={() => del.mutate(s._id)} disabled={del.isPending}>
+                          Delete
+                        </Button>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </div>
           )}
         </CardContent>
       </Card>

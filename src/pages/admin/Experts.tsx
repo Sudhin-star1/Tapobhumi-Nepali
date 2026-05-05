@@ -146,48 +146,50 @@ export default function AdminExperts() {
           ) : rows.length === 0 ? (
             <div className="text-sm text-muted-foreground">No experts yet.</div>
           ) : (
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Photo</TableHead>
-                  <TableHead>Name</TableHead>
-                  <TableHead>Role</TableHead>
-                  <TableHead>Phone</TableHead>
-                  <TableHead className="text-right">Actions</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {rows.map((e) => (
-                  <TableRow key={e._id}>
-                    <TableCell>
-                      {e.image ? <img src={e.image} alt={e.name} className="w-10 h-10 rounded-full object-cover" /> : <div className="w-10 h-10 rounded-full bg-muted" />}
-                    </TableCell>
-                    <TableCell className="font-medium">{e.name}</TableCell>
-                    <TableCell className="text-muted-foreground">{e.role || "—"}</TableCell>
-                    <TableCell className="text-muted-foreground">{e.phone}</TableCell>
-                    <TableCell className="text-right space-x-2">
-                      <Button
-                        variant="secondary"
-                        size="sm"
-                        onClick={() => {
-                          setEditing(e);
-                          setName(e.name);
-                          setPhone(e.phone);
-                          setRole(e.role || "");
-                          setImage(null);
-                          setOpen(true);
-                        }}
-                      >
-                        Edit
-                      </Button>
-                      <Button variant="destructive" size="sm" onClick={() => del.mutate(e._id)} disabled={del.isPending}>
-                        Delete
-                      </Button>
-                    </TableCell>
+            <div className="w-full overflow-x-auto">
+              <Table className="min-w-[720px]">
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Photo</TableHead>
+                    <TableHead>Name</TableHead>
+                    <TableHead>Role</TableHead>
+                    <TableHead>Phone</TableHead>
+                    <TableHead className="text-right">Actions</TableHead>
                   </TableRow>
-                ))}
-              </TableBody>
-            </Table>
+                </TableHeader>
+                <TableBody>
+                  {rows.map((e) => (
+                    <TableRow key={e._id}>
+                      <TableCell>
+                        {e.image ? <img src={e.image} alt={e.name} className="w-10 h-10 rounded-full object-cover" /> : <div className="w-10 h-10 rounded-full bg-muted" />}
+                      </TableCell>
+                      <TableCell className="font-medium">{e.name}</TableCell>
+                      <TableCell className="text-muted-foreground">{e.role || "—"}</TableCell>
+                      <TableCell className="text-muted-foreground">{e.phone}</TableCell>
+                      <TableCell className="text-right space-x-2">
+                        <Button
+                          variant="secondary"
+                          size="sm"
+                          onClick={() => {
+                            setEditing(e);
+                            setName(e.name);
+                            setPhone(e.phone);
+                            setRole(e.role || "");
+                            setImage(null);
+                            setOpen(true);
+                          }}
+                        >
+                          Edit
+                        </Button>
+                        <Button variant="destructive" size="sm" onClick={() => del.mutate(e._id)} disabled={del.isPending}>
+                          Delete
+                        </Button>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </div>
           )}
         </CardContent>
       </Card>

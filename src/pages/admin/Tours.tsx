@@ -228,45 +228,47 @@ export default function AdminTours() {
           ) : rows.length === 0 ? (
             <div className="text-sm text-muted-foreground">No tours yet.</div>
           ) : (
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Name</TableHead>
-                  <TableHead>Route</TableHead>
-                  <TableHead>Description</TableHead>
-                  <TableHead className="text-right">Actions</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {rows.map((t) => (
-                  <TableRow key={t._id}>
-                    <TableCell className="font-medium">{t.name}</TableCell>
-                    <TableCell className="text-muted-foreground">{t.route}</TableCell>
-                    <TableCell className="text-muted-foreground">{t.description || "—"}</TableCell>
-                    <TableCell className="text-right space-x-2">
-                      <Button
-                        variant="secondary"
-                        size="sm"
-                        onClick={() => {
-                          setEditing(t);
-                          setName(t.name);
-                          setRoute(t.route);
-                          setDescription(t.description || "");
-                          setFiles(null);
-                          setExistingImages(t.images || []);
-                          setOpen(true);
-                        }}
-                      >
-                        Edit
-                      </Button>
-                      <Button variant="destructive" size="sm" onClick={() => del.mutate(t._id)} disabled={del.isPending}>
-                        Delete
-                      </Button>
-                    </TableCell>
+            <div className="w-full overflow-x-auto">
+              <Table className="min-w-[980px]">
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Name</TableHead>
+                    <TableHead>Route</TableHead>
+                    <TableHead>Description</TableHead>
+                    <TableHead className="text-right">Actions</TableHead>
                   </TableRow>
-                ))}
-              </TableBody>
-            </Table>
+                </TableHeader>
+                <TableBody>
+                  {rows.map((t) => (
+                    <TableRow key={t._id}>
+                      <TableCell className="font-medium">{t.name}</TableCell>
+                      <TableCell className="text-muted-foreground">{t.route}</TableCell>
+                      <TableCell className="text-muted-foreground">{t.description || "—"}</TableCell>
+                      <TableCell className="text-right space-x-2">
+                        <Button
+                          variant="secondary"
+                          size="sm"
+                          onClick={() => {
+                            setEditing(t);
+                            setName(t.name);
+                            setRoute(t.route);
+                            setDescription(t.description || "");
+                            setFiles(null);
+                            setExistingImages(t.images || []);
+                            setOpen(true);
+                          }}
+                        >
+                          Edit
+                        </Button>
+                        <Button variant="destructive" size="sm" onClick={() => del.mutate(t._id)} disabled={del.isPending}>
+                          Delete
+                        </Button>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </div>
           )}
         </CardContent>
       </Card>

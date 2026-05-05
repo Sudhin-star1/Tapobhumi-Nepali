@@ -36,7 +36,12 @@ export const PlanJourney = () => {
 
   return (
     <section id="plan" className="py-24 md:py-32 bg-background relative overflow-hidden">
-      <img src={mandala} alt="" aria-hidden className="absolute -left-40 top-1/2 -translate-y-1/2 w-[500px] opacity-10 animate-spin-slow pointer-events-none" />
+      <img
+        src={mandala}
+        alt=""
+        aria-hidden
+        className="absolute -left-28 sm:-left-40 top-1/2 -translate-y-1/2 w-[340px] sm:w-[500px] opacity-10 animate-spin-slow pointer-events-none"
+      />
 
       <div className="container relative">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -62,7 +67,7 @@ export const PlanJourney = () => {
           <Reveal delay={200}>
             <form
               onSubmit={submit}
-              className="relative p-8 md:p-10 rounded-3xl bg-gradient-to-br from-card to-muted/60 border border-border shadow-elegant"
+              className="relative p-6 sm:p-8 md:p-10 rounded-3xl bg-gradient-to-br from-card to-muted/60 border border-border shadow-elegant"
             >
               <div className="grid sm:grid-cols-2 gap-5">
                 <div className="sm:col-span-2">

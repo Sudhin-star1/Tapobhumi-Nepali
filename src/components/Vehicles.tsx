@@ -44,7 +44,7 @@ export const Vehicles = () => {
           subtitle={t("vehicles_subtitle")}
         />
 
-        <div className="mt-16 grid md:grid-cols-3 gap-6">
+        <div className="mt-16 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((s, i) => (
             <Reveal key={s.title} delay={i * 120}>
               <div className="group relative h-full p-8 rounded-2xl bg-snow/[0.04] border border-snow/10 backdrop-blur-sm hover:bg-snow/[0.08] hover:border-primary/40 transition-all duration-700 hover:-translate-y-1">
@@ -71,7 +71,7 @@ export const Vehicles = () => {
               href={`https://wa.me/${whatsapp}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full gradient-sunrise text-primary-foreground font-medium shadow-glow hover:shadow-deep transition-all duration-500 whitespace-nowrap"
+              className="inline-flex w-full md:w-auto items-center justify-center gap-2 px-7 py-3.5 rounded-full gradient-sunrise text-primary-foreground font-medium shadow-glow hover:shadow-deep transition-all duration-500"
             >
               {t("vehicles_cta")} <ArrowRight size={16} />
             </a>

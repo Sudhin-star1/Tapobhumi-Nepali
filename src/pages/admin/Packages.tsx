@@ -183,51 +183,53 @@ export default function AdminPackages() {
           ) : rows.length === 0 ? (
             <div className="text-sm text-muted-foreground">No packages yet.</div>
           ) : (
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Title</TableHead>
-                  <TableHead>Category</TableHead>
-                  <TableHead>Duration</TableHead>
-                  <TableHead>Featured</TableHead>
-                  <TableHead className="text-right">Actions</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {rows.map((p) => (
-                  <TableRow key={p._id}>
-                    <TableCell className="font-medium">{p.title}</TableCell>
-                    <TableCell>{p.category}</TableCell>
-                    <TableCell>{p.duration}</TableCell>
-                    <TableCell>{p.featured ? "Yes" : "No"}</TableCell>
-                    <TableCell className="text-right space-x-2">
-                      <Button
-                        variant="secondary"
-                        size="sm"
-                        onClick={() => {
-                          setEditing(p);
-                          setDraft({
-                            title: p.title,
-                            duration: p.duration,
-                            category: p.category,
-                            featured: p.featured,
-                            price: p.price ? String(p.price) : "",
-                            itineraryJson: JSON.stringify(p.itinerary ?? [], null, 2),
-                            imagesCsv: (p.images ?? []).join(", "),
-                          });
-                          setOpen(true);
-                        }}
-                      >
-                        Edit
-                      </Button>
-                      <Button variant="destructive" size="sm" onClick={() => del.mutate(p._id)} disabled={del.isPending}>
-                        Delete
-                      </Button>
-                    </TableCell>
+            <div className="w-full overflow-x-auto">
+              <Table className="min-w-[760px]">
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Title</TableHead>
+                    <TableHead>Category</TableHead>
+                    <TableHead>Duration</TableHead>
+                    <TableHead>Featured</TableHead>
+                    <TableHead className="text-right">Actions</TableHead>
                   </TableRow>
-                ))}
-              </TableBody>
-            </Table>
+                </TableHeader>
+                <TableBody>
+                  {rows.map((p) => (
+                    <TableRow key={p._id}>
+                      <TableCell className="font-medium">{p.title}</TableCell>
+                      <TableCell>{p.category}</TableCell>
+                      <TableCell>{p.duration}</TableCell>
+                      <TableCell>{p.featured ? "Yes" : "No"}</TableCell>
+                      <TableCell className="text-right space-x-2">
+                        <Button
+                          variant="secondary"
+                          size="sm"
+                          onClick={() => {
+                            setEditing(p);
+                            setDraft({
+                              title: p.title,
+                              duration: p.duration,
+                              category: p.category,
+                              featured: p.featured,
+                              price: p.price ? String(p.price) : "",
+                              itineraryJson: JSON.stringify(p.itinerary ?? [], null, 2),
+                              imagesCsv: (p.images ?? []).join(", "),
+                            });
+                            setOpen(true);
+                          }}
+                        >
+                          Edit
+                        </Button>
+                        <Button variant="destructive" size="sm" onClick={() => del.mutate(p._id)} disabled={del.isPending}>
+                          Delete
+                        </Button>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </div>
           )}
         </CardContent>
       </Card>

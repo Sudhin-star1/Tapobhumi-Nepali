@@ -14,7 +14,7 @@ export const Hero = () => {
   const whatsapp = contact.data?.whatsapp || "9816142050";
 
   return (
-    <section id="top" className="relative h-screen min-h-[700px] w-full overflow-hidden">
+    <section id="top" className="relative h-[100svh] min-h-[560px] sm:min-h-[650px] w-full overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0">
         <img
@@ -37,7 +37,7 @@ export const Hero = () => {
         src={mandala}
         alt=""
         aria-hidden
-        className="absolute -right-40 -bottom-40 w-[600px] opacity-20 animate-spin-slow pointer-events-none"
+        className="absolute -right-32 -bottom-32 sm:-right-40 sm:-bottom-40 w-[360px] sm:w-[520px] lg:w-[600px] opacity-20 animate-spin-slow pointer-events-none"
       />
 
       {/* Content */}
@@ -48,24 +48,24 @@ export const Hero = () => {
             <span className="text-snow/90 uppercase tracking-[0.4em] text-xs">{t("hero_kicker")}</span>
           </div>
 
-          <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl text-snow leading-[1.05] text-balance">
+          <h1 className="font-serif text-4xl sm:text-5xl md:text-7xl lg:text-8xl text-snow leading-[1.05] text-balance">
             {t("hero_headline_1")}
             <br />
             <span className="italic font-light text-primary-glow">{t("hero_headline_2")}</span>
             <br />
-            <span className="text-3xl md:text-4xl lg:text-5xl text-snow/90 font-light">
+            <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-snow/90 font-light">
               {t("hero_headline_3")}
             </span>
           </h1>
 
-          <p className="mt-8 text-lg md:text-xl text-snow/85 max-w-2xl leading-relaxed font-light">
+          <p className="mt-6 sm:mt-8 text-base sm:text-lg md:text-xl text-snow/85 max-w-2xl leading-relaxed font-light">
             {t("hero_description")}
           </p>
 
           <div className="mt-10 flex flex-wrap gap-4">
             <a
               href="#packages"
-              className="group inline-flex items-center gap-2 px-8 py-4 rounded-full gradient-sunrise text-primary-foreground font-medium tracking-wide shadow-glow hover:shadow-deep transition-all duration-500 hover:-translate-y-1"
+              className="group inline-flex items-center justify-center gap-2 px-7 sm:px-8 py-3.5 sm:py-4 rounded-full gradient-sunrise text-primary-foreground font-medium tracking-wide shadow-glow hover:shadow-deep transition-all duration-500 hover:-translate-y-1"
             >
               {t("hero_cta_packages")}
               <ArrowDown size={18} className="group-hover:translate-y-1 transition-transform" />
@@ -74,7 +74,7 @@ export const Hero = () => {
               href={`https://wa.me/${whatsapp}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-snow/10 backdrop-blur-md border border-snow/40 text-snow font-medium tracking-wide hover:bg-snow/20 transition-all duration-500"
+              className="inline-flex items-center justify-center gap-2 px-7 sm:px-8 py-3.5 sm:py-4 rounded-full bg-snow/10 backdrop-blur-md border border-snow/40 text-snow font-medium tracking-wide hover:bg-snow/20 transition-all duration-500"
             >
               <MessageCircle size={18} />
               {t("hero_cta_whatsapp")}
@@ -83,7 +83,7 @@ export const Hero = () => {
         </div>
 
         {/* Scroll cue */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-snow/70">
+        <div className="absolute bottom-6 sm:bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-snow/70">
           <span className="text-[10px] uppercase tracking-[0.3em]">Scroll</span>
           <div className="w-px h-12 bg-gradient-to-b from-snow/60 to-transparent" />
         </div>
