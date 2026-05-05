@@ -26,7 +26,7 @@ export const ContactWithExpert = () => {
     queryFn: () => apiFetch<Expert[]>("/api/experts"),
   });
 
-  const experts = (q.data ?? []).slice(0, 2);
+  const experts = q.data ?? [];
   const waText = encodeURIComponent("Hello, I want to know more about your trekking packages.");
 
   return (
