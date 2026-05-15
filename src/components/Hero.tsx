@@ -3,6 +3,7 @@ import mandala from "@/assets/mandala.png";
 import { ArrowDown, MessageCircle } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { apiFetch } from "@/admin/api";
+import { whatsappNumber } from "@/lib/contactDefaults";
 import { useTranslation } from "react-i18next";
 
 export const Hero = () => {
@@ -11,7 +12,7 @@ export const Hero = () => {
     queryKey: ["public-contact-hero"],
     queryFn: () => apiFetch<{ whatsapp?: string }>("/api/contact"),
   });
-  const whatsapp = contact.data?.whatsapp || "9816142050";
+  const whatsapp = whatsappNumber(contact.data);
 
   return (
     <section id="top" className="relative h-[100svh] min-h-[560px] sm:min-h-[650px] w-full overflow-hidden">

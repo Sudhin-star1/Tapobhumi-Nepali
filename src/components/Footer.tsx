@@ -2,6 +2,7 @@ import { Mail, Phone, MapPin, Instagram, Facebook, Youtube } from "lucide-react"
 import mandala from "@/assets/mandala.png";
 import { useQuery } from "@tanstack/react-query";
 import { apiFetch } from "@/admin/api";
+import { DEFAULT_CONTACT } from "@/lib/contactDefaults";
 
 type ContactInfo = {
   phone?: string;
@@ -16,9 +17,8 @@ export const Footer = () => {
     queryFn: () => apiFetch<ContactInfo>("/api/contact"),
   });
 
-  const phone = q.data?.phone || "+977 980 000 0000";
-  const email = q.data?.email || "hello@example.com";
-  const whatsapp = q.data?.whatsapp || "9779800000000";
+  const phone = q.data?.phone || DEFAULT_CONTACT.phone;
+  const email = q.data?.email || DEFAULT_CONTACT.email;
   const socials = q.data?.socialLinks || {};
 
   return (

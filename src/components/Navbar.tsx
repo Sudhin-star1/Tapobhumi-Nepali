@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 import { useTranslation } from "react-i18next";
 import { useQuery } from "@tanstack/react-query";
 import { apiFetch } from "@/admin/api";
+import { whatsappNumber } from "@/lib/contactDefaults";
 
 export const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -14,7 +15,7 @@ export const Navbar = () => {
     queryKey: ["public-contact-navbar"],
     queryFn: () => apiFetch<{ whatsapp?: string }>("/api/contact"),
   });
-  const whatsapp = contact.data?.whatsapp || "9816142050";
+  const whatsapp = whatsappNumber(contact.data);
 
   const links = [
     { href: "#experiences", label: t("nav_experiences") },

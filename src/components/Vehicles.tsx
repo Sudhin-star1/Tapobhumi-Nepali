@@ -1,6 +1,7 @@
 import { Car, Mountain, MapPinned, ArrowRight, ShieldCheck } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { apiFetch } from "@/admin/api";
+import { whatsappNumber } from "@/lib/contactDefaults";
 import { Reveal } from "./Reveal";
 import { SectionHeader } from "./SectionHeader";
 import { useTranslation } from "react-i18next";
@@ -29,7 +30,7 @@ export const Vehicles = () => {
     queryKey: ["public-contact-vehicles"],
     queryFn: () => apiFetch<{ whatsapp?: string }>("/api/contact"),
   });
-  const whatsapp = contact.data?.whatsapp || "9816142050";
+  const whatsapp = whatsappNumber(contact.data);
 
   return (
     <section id="vehicles" className="py-24 md:py-32 bg-himalaya text-snow relative overflow-hidden">

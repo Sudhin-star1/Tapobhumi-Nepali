@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { BotMessageSquare, Volume2, VolumeX, ArrowUp } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { apiFetch } from "@/admin/api";
+import { whatsappNumber } from "@/lib/contactDefaults";
 
 type ContactInfo = { whatsapp?: string };
 
@@ -15,7 +16,7 @@ export const FloatingActions = () => {
     queryFn: () => apiFetch<ContactInfo>("/api/contact"),
   });
 
-  const whatsapp = contact.data?.whatsapp || "9779800000000";
+  const whatsapp = whatsappNumber(contact.data);
 
   useEffect(() => {
     const onScroll = () => setShowTop(window.scrollY > 600);

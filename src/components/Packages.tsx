@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Reveal } from "./Reveal";
 import { SectionHeader } from "./SectionHeader";
 import { apiFetch } from "@/admin/api";
+import { whatsappNumber } from "@/lib/contactDefaults";
 import { useTranslation } from "react-i18next";
 
 interface Day {
@@ -170,7 +171,7 @@ export const Packages = () => {
     queryKey: ["public-contact-whatsapp"],
     queryFn: () => apiFetch<ContactInfo>("/api/contact"),
   });
-  const whatsapp = contact.data?.whatsapp || "9779800000000";
+  const whatsapp = whatsappNumber(contact.data);
 
   const q = useQuery({
     queryKey: ["public-featured-packages"],
