@@ -2,7 +2,7 @@ import { Mail, Phone, MapPin, Instagram, Facebook, Youtube } from "lucide-react"
 import mandala from "@/assets/mandala.png";
 import { useQuery } from "@tanstack/react-query";
 import { apiFetch } from "@/admin/api";
-import { DEFAULT_CONTACT } from "@/lib/contactDefaults";
+import { DEFAULT_CONTACT, PHONE_DISPLAY, whatsappNumber } from "@/lib/contactDefaults";
 
 type ContactInfo = {
   phone?: string;
@@ -17,11 +17,9 @@ export const Footer = () => {
     queryFn: () => apiFetch<ContactInfo>("/api/contact"),
   });
 
-  const phone = q.data?.phone || DEFAULT_CONTACT.phone;
   const email = q.data?.email || DEFAULT_CONTACT.email;
-  const whatsapp = q.data?.whatsapp || DEFAULT_CONTACT.whatsapp;
   const socials = q.data?.socialLinks || {};
-  const waHref = `https://wa.me/${whatsapp.replace(/[^\d]/g, "")}`;
+  const waHref = `https://wa.me/${whatsappNumber(q.data)}`;
 
   return (
     <footer className="relative bg-himalaya text-snow overflow-hidden">
@@ -81,14 +79,24 @@ export const Footer = () => {
               <li className="flex items-start gap-2.5"><MapPin size={15} className="mt-0.5 text-primary-glow shrink-0" /> Pokhara Lakeside, Kaski</li>
               <li className="flex items-start gap-2.5">
                 <Phone size={15} className="mt-0.5 text-primary-glow shrink-0" />
-                <a
-                  href={waHref}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-primary-glow transition-colors"
-                >
-                  {phone}
-                </a>
+                <div className="flex flex-col gap-1">
+                  <a
+                    href={waHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-primary-glow transition-colors"
+                  >
+                    {PHONE_DISPLAY.primary}
+                  </a>
+                  <a
+                    href={waHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-primary-glow transition-colors"
+                  >
+                    {PHONE_DISPLAY.secondary}
+                  </a>
+                </div>
               </li>
               <li className="flex items-start gap-2.5">
                 <Mail size={15} className="mt-0.5 text-primary-glow shrink-0" />

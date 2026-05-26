@@ -31,9 +31,9 @@ async function seedContact() {
   if (existing) return;
 
   await ContactInfo.create({
-    phone: "9802852192",
+    phone: "9816142050",
     email: "tapobhumi@gmail.com",
-    whatsapp: "9802852192",
+    whatsapp: "9779802852192",
     socialLinks: {
       instagram: "#",
       facebook: "#",
