@@ -19,7 +19,9 @@ export const Footer = () => {
 
   const phone = q.data?.phone || DEFAULT_CONTACT.phone;
   const email = q.data?.email || DEFAULT_CONTACT.email;
+  const whatsapp = q.data?.whatsapp || DEFAULT_CONTACT.whatsapp;
   const socials = q.data?.socialLinks || {};
+  const waHref = `https://wa.me/${whatsapp.replace(/[^\d]/g, "")}`;
 
   return (
     <footer className="relative bg-himalaya text-snow overflow-hidden">
@@ -76,15 +78,28 @@ export const Footer = () => {
           <div>
             <h4 className="font-serif text-lg mb-5 text-primary-glow">Contact</h4>
             <ul className="space-y-3 text-sm text-snow/70">
-              <li className="flex items-start gap-2.5"><MapPin size={15} className="mt-0.5 text-primary-glow shrink-0" /> Thamel, Kathmandu, Nepal</li>
-              <li className="flex items-start gap-2.5"><Phone size={15} className="mt-0.5 text-primary-glow shrink-0" /> {phone}</li>
-              <li className="flex items-start gap-2.5"><Mail size={15} className="mt-0.5 text-primary-glow shrink-0" /> {email}</li>
+              <li className="flex items-start gap-2.5"><MapPin size={15} className="mt-0.5 text-primary-glow shrink-0" /> Pokhara Lakeside, Kaski</li>
+              <li className="flex items-start gap-2.5">
+                <Phone size={15} className="mt-0.5 text-primary-glow shrink-0" />
+                <a
+                  href={waHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-primary-glow transition-colors"
+                >
+                  {phone}
+                </a>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <Mail size={15} className="mt-0.5 text-primary-glow shrink-0" />
+                <a href={`mailto:${email}`} className="hover:text-primary-glow transition-colors">{email}</a>
+              </li>
             </ul>
           </div>
         </div>
 
         <div className="mt-14 pt-8 border-t border-snow/10 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-snow/50">
-          <div>© {new Date().getFullYear()} Tapobhumi Nepali Darshan. Crafted with reverence in Kathmandu.</div>
+          <div>© {new Date().getFullYear()} Tapobhumi Nepali Darshan. Crafted with reverence in Pokhara.</div>
           <div className="font-serif italic text-snow/70">"The mountain doesn't move. We do." 🏔️</div>
         </div>
       </div>

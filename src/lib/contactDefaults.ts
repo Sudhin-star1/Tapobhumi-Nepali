@@ -1,8 +1,8 @@
 /** Fallback contact values when /api/contact is loading or unavailable (matches server seed). */
 export const DEFAULT_CONTACT = {
-  phone: "9816142050",
+  phone: "9802852192",
   email: "tapobhumi@gmail.com",
-  whatsapp: "9816142050",
+  whatsapp: "9802852192",
 } as const;
 
 export function whatsappNumber(contact?: { whatsapp?: string }) {
