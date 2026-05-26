@@ -1,9 +1,12 @@
-/** Fallback contact values when /api/contact is loading or unavailable (matches server seed). */
+/** Canonical WhatsApp number used everywhere except the Footer phone list and Experts section. */
+export const PRIMARY_WHATSAPP = "9779802852192";
+
+/** Fallback contact values when /api/contact is loading or unavailable. */
 export const DEFAULT_CONTACT = {
   phone: "9816142050",
   phoneSecondary: "9802852192",
   email: "tapobhumi@gmail.com",
-  whatsapp: "9779802852192",
+  whatsapp: PRIMARY_WHATSAPP,
 } as const;
 
 export const PHONE_DISPLAY = {
@@ -11,13 +14,11 @@ export const PHONE_DISPLAY = {
   secondary: "+977 9802852192",
 } as const;
 
-const NEPAL_COUNTRY_CODE = "977";
-
-export function whatsappNumber(contact?: { whatsapp?: string }) {
-  const raw = contact?.whatsapp?.trim() || DEFAULT_CONTACT.whatsapp;
-  const digits = raw.replace(/[^\d]/g, "");
-  if (!digits) return DEFAULT_CONTACT.whatsapp;
-  if (digits.startsWith(NEPAL_COUNTRY_CODE)) return digits;
-  if (digits.length === 10 && digits.startsWith("9")) return NEPAL_COUNTRY_CODE + digits;
-  return digits;
+/**
+ * Returns the canonical business WhatsApp number for the floating bot, CTAs, hero,
+ * navbar, vehicles and packages buttons. Admin-managed values are intentionally ignored
+ * here so that every redirect lands on +977 9802852192.
+ */
+export function whatsappNumber(_contact?: { whatsapp?: string }) {
+  return PRIMARY_WHATSAPP;
 }
