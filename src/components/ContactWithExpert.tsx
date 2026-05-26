@@ -16,7 +16,11 @@ type Expert = {
 };
 
 function normalizePhoneForWa(phone: string) {
-  return phone.replace(/[^\d]/g, "");
+  const digits = phone.replace(/[^\d]/g, "");
+  if (!digits) return digits;
+  if (digits.startsWith("977")) return digits;
+  if (digits.length === 10 && digits.startsWith("9")) return "977" + digits;
+  return digits;
 }
 
 export const ContactWithExpert = () => {

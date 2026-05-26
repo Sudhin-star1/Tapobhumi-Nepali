@@ -11,7 +11,13 @@ export const PHONE_DISPLAY = {
   secondary: "+977 9802852192",
 } as const;
 
+const NEPAL_COUNTRY_CODE = "977";
+
 export function whatsappNumber(contact?: { whatsapp?: string }) {
   const raw = contact?.whatsapp?.trim() || DEFAULT_CONTACT.whatsapp;
-  return raw.replace(/[^\d]/g, "");
+  const digits = raw.replace(/[^\d]/g, "");
+  if (!digits) return DEFAULT_CONTACT.whatsapp;
+  if (digits.startsWith(NEPAL_COUNTRY_CODE)) return digits;
+  if (digits.length === 10 && digits.startsWith("9")) return NEPAL_COUNTRY_CODE + digits;
+  return digits;
 }
